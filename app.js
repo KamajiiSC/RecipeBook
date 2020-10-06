@@ -9,7 +9,7 @@ app.use(morgan('dev'));
 app.use('/products', productRoutes);
 
 app.use((req, res, next) => {
-  const error = new Error('Note Found');
+  const error = new Error('Not Found');
   error.status = 404;
   next(error);
 });

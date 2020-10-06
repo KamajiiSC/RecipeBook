@@ -9,6 +9,11 @@ app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
+app.use((req, res, next) => {
+  res.header('Access-Controll-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization')
+});
+
 app.use('/products', productRoutes);
 
 app.use((req, res, next) => {

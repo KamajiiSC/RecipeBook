@@ -6,7 +6,8 @@ const mongoose = require('mongoose');
 
 const productRoutes = require('./api/routes/products');
 
-mongoose.connect('mongodb+srv://Kamajii:' + process.env.MONGO_ATLAS_PW + '@recipebook.rtrlp.mongodb.net/<dbname>?retryWrites=true&w=majority', {
+mongoose.connect('mongodb+srv://Kamajii:' + process.env.MONGO_ATLAS_PW + '@recipebook.rtrlp.mongodb.net/<dbname>?retryWrites=true&w=majority', 
+{
   useMongoClient: true
 })
 

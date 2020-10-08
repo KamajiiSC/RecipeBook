@@ -29,17 +29,16 @@ router.post('/', (req, res, next) => {
 
 router.get('/:productId', (req, res, next)  => {
   const id = req.params.productId;
-  if(id === 'special'){
-    res.status(200).json({
-      message: 'You got it',
-      id: id
+  Product.findById(id)
+    .exec()
+    .then(doc => {
+      console.log(doc);
+      res.status(200).json(doc);
     })
-  }
-  else{
-    res.status(200).json({
-      message: 'You passed an ID'
-    })
-  }
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({error: err});
+    });
 });
 
 router.patch('/:productId', (req, res, next) => {

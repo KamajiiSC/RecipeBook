@@ -15,6 +15,11 @@ router.post('/', (req, res, next) => {
     _id: new mongoose.Types.ObjectId(),
     name: req.body.name,
   });
+  product.save()
+    .then(result => {
+      console.log(result);
+    })
+    .catch(err => console.log(err));
   res.status(201).json({
     message: 'Handling POST requests for /products',
     createdProduct: product

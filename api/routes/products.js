@@ -9,8 +9,22 @@ router.get('/', (req, res, next) => {
   Product.find()
     .exec()
     .then(docs => {
-      console.log(docs);
-      res.status(200).json(docs);
+      const response = {
+        count: docs.length,
+        products: docs.map(doc => {
+          return {
+            name: doc.name, 
+            price: doc.price,
+            _id: doc._id,
+            request: {
+              type: 'GET',
+              url: 'http://loclahost:3000/products/' + doc._id
+            }
+          }
+        })
+
+      };
+      res.status(200).json(response);
     })
     .catch(err => {
       console.log(err);
